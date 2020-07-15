@@ -9,8 +9,8 @@ def  request(url, api)
     https.use_ssl = true
     # http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     request = Net::HTTP::Get.new(url)
-    # request ['app_id']= '4e7c1129-d83c-44e7-8147-dcdc5ce85f22'
-    # request ['app_key']= '1nCzmBKkvH7vo8CKIU236gL3zMOnUKzo4k7qGoL6'
+    request ['app_id']= '4e7c1129-d83c-44e7-8147-dcdc5ce85f22'
+    request ['app_key']= '1nCzmBKkvH7vo8CKIU236gL3zMOnUKzo4k7qGoL6'
     response = https.request(request)
     return JSON.parse (response.body)
     # return response.read_body
@@ -33,13 +33,12 @@ def build_web_page(response)
         output +="\n\t\t\t<li><img src=#{img} /></li>"
     end
     output += "\n\t\t</ul>\n\t</body>\n</html>"
-    # File.write ('index.html', output)
     out_file = File.new("index.html", "w") 
     out_file.puts (output)
     out_file.close
 end
 
-hash = request 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000', 'DEMO_KEY'
+hash = request 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=10', '1nCzmBKkvH7vo8CKIU236gL3zMOnUKzo4k7qGoL6'
 
 build_web_page hash
 
