@@ -1,4 +1,5 @@
-data = File.open('./notas.data').readlines
+data = File.open('./notas.data').readlines 
+# 
 
 def higher_grade(data)
     a = data.split(',')
