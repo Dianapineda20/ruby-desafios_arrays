@@ -4,7 +4,6 @@ require "json"
 
 def  request(url, api)
     url = URI(url + "&api_key=" + api)
-    puts url
     https = Net::HTTP.new(url.host, url.port);
     https.use_ssl = true
     request = Net::HTTP::Get.new(url)
@@ -45,6 +44,7 @@ end
 hash = request 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=10', '1nCzmBKkvH7vo8CKIU236gL3zMOnUKzo4k7qGoL6'
 
 build_web_page hash
-puts hash
+
+puts photos_count hash
 
 
